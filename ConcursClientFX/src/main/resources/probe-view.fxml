@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="563.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="concurs.client.gui.ProbeController">
+
+    <TableView fx:id="probeTableView" layoutX="12.0" layoutY="74.0" onMouseClicked="#handleShowParticipanti" prefHeight="250.0" prefWidth="400.0">
+        <columns>
+            <TableColumn fx:id="numeProbaColumn" prefWidth="125.0" text="Proba" />
+            <TableColumn fx:id="categorieVarstaColumn" prefWidth="125.0" text="Categorie Varsta" />
+            <TableColumn fx:id="numarParticipantiColumn" prefWidth="150.0" text="Numar Participanti" />
+        </columns>
+    </TableView>
+
+    <TableView fx:id="participantiTableView" layoutX="420.0" layoutY="74.0" prefHeight="250.0" prefWidth="500.0">
+        <columns>
+            <TableColumn fx:id="numeParticipantColumn" prefWidth="250.0" text="Nume Participant" />
+            <TableColumn fx:id="varstaParticipantColumn" prefWidth="250.0" text="Varsta" />
+        </columns>
+    </TableView>
+
+    <Label layoutX="180.0" layoutY="38.0" text="Lista Probe">
+        <font>
+            <Font name="System Bold" size="25.0" />
+        </font>
+    </Label>
+
+    <Label layoutX="620.0" layoutY="38.0" text="Participanti Inscrisi">
+        <font>
+            <Font name="System Bold" size="25.0" />
+        </font>
+    </Label>
+
+    <!-- Search Section -->
+    <Label layoutX="14.0" layoutY="343.0" text="Cauta Proba:">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+
+    <TextField fx:id="numeProbaField" layoutX="14.0" layoutY="363.0" prefWidth="150.0" promptText="Nume proba" />
+
+    <Label layoutX="14.0" layoutY="400.0" text="Categorie Varsta:">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+
+    <ComboBox fx:id="varstaMinCombo" layoutX="12.0" layoutY="420.0" prefHeight="26.0" prefWidth="67.0" promptText="Min" />
+    <ComboBox fx:id="varstaMaxCombo" layoutX="90.0" layoutY="420.0" prefHeight="26.0" prefWidth="76.0" promptText="Max" />
+
+    <Button fx:id="SearchButton" layoutX="12.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleCauta" prefHeight="26.0" prefWidth="150.0" text="Cauta" />
+
+    <!-- Registration Section -->
+    <Pane layoutX="204.0" layoutY="343.0" prefHeight="205.0" prefWidth="694.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10;">
+        <children>
+            <Label layoutX="180.0" layoutY="10.0" text="Inregistrare Participant">
+                <font>
+                    <Font name="System Bold" size="20.0" />
+                </font>
+            </Label>
+
+            <GridPane hgap="10" layoutX="20.0" layoutY="40.0" prefHeight="120.0" prefWidth="460.0" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="100.0" />
+                    <ColumnConstraints prefWidth="300.0" />
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints prefHeight="30.0" />
+                    <RowConstraints prefHeight="30.0" />
+                    <RowConstraints prefHeight="30.0" />
+               <RowConstraints />
+                </rowConstraints>
+
+                <Label text="Nume:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="numeParticipantField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="CNP:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="cnpParticipantField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <!--                <Label text="Varsta:" GridPane.columnIndex="0" GridPane.rowIndex="2">-->
+                <!--                    <font>-->
+                <!--                        <Font size="14.0" />-->
+                <!--                    </font>-->
+                <!--                </Label>-->
+                <VBox spacing="1" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <CheckBox fx:id="disciplina1CheckBox" text="desen" />
+                        <CheckBox fx:id="disciplina2CheckBox" text="poezie" />
+                        <CheckBox fx:id="disciplina3CheckBox" text="cautare comori" />
+                    </children>
+                </VBox>
+
+
+            </GridPane>
+
+            <Button fx:id="registerButton" layoutX="553.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleInregistreaza" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Inregistreaza" />
+
+            <Label fx:id="RegisterBox" layoutX="20.0" layoutY="170.0" prefWidth="460.0" style="-fx-text-fill: #d9534f; -fx-font-weight: bold;" />
+        </children>
+    </Pane>
+
+    <Button fx:id="logoutButton" layoutX="786.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleLogOut" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #d9534f; -fx-text-fill: white;" text="Log Out" />
+</AnchorPane>
