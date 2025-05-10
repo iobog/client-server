@@ -1,0 +1,10 @@
+rootProject.name = 'laborator6'
+include 'ConcursModel'
+include 'ConcursPersistance'
+include 'ConcursServices'
+include 'ConcursNetworking'
+include 'ConcursServer'
+include 'ConcursClient'
+include 'ConcursClientFX'
+include 'Grpc'
+

@@ -1,0 +1,96 @@
+syntax = "proto3";
+ // Asta trebuie să fie prezentă
+option java_package = "grpc";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+option csharp_namespace = "Proto";
+package concurs;
+
+
+// Messages
+message PersoanaOficiu {
+  string username = 1;
+  string parola = 2;
+}
+
+message Participant {
+  int32 id = 1;
+  string cnp = 2;
+  string name = 3;
+  int32 age = 4;
+}
+
+message Proba {
+  int32 id = 1;
+  string name = 2;
+  string categorieVarsta=3;
+  int32 numarParticipanti = 4;
+}
+
+message Inscriere {
+  int32 participantId = 1;
+  int32 probaId = 2;
+}
+
+// Requests
+message LoginRequest {
+  PersoanaOficiu persoana = 1;
+}
+
+message LogoutRequest {
+  PersoanaOficiu persoana = 1;
+}
+
+message AddParticipantRequest {
+  Participant participant = 1;
+}
+
+message AddToProbaRequest {
+  int32 participantId = 1;
+  int32 probaId = 2;
+}
+
+message GetRegisteredRequest {
+  Proba proba = 1;
+}
+
+// Responses
+message Empty {}
+
+message SubscribeRequest {
+  string username = 1;  // PersoanaOficiu username for authentication
+}
+
+message InscriereUpdate {
+  Participant participant = 1;
+  Proba proba = 2;
+  string timestamp = 3;  // ISO 8601 format
+}
+
+
+message ParticipantResponse {
+  Participant participant = 1;
+}
+
+message ParticipantList {
+  repeated Participant participants = 1;
+}
+
+message ProbaList {
+  repeated Proba probe = 1;
+}
+
+message BoolResponse {
+  bool success = 1;
+}
+
+// Service
+service ConcursService {
+  rpc Login(LoginRequest) returns (Empty);
+  rpc Logout(LogoutRequest) returns (Empty);
+  rpc AddParticipant(AddParticipantRequest) returns (ParticipantResponse);
+  rpc AddParticipantToProba(AddToProbaRequest) returns (BoolResponse);
+  rpc GetRegisteredParticipantsForProba(GetRegisteredRequest) returns (ParticipantList);
+  rpc GetProbe(Empty) returns (ProbaList);
+  rpc SubscribeToUpdates(SubscribeRequest) returns (stream InscriereUpdate);
+}

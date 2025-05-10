@@ -1,0 +1,36 @@
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="concurs.client.gui.LoginController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TextField fx:id="usernameField" layoutX="300.0" layoutY="128.0"/>
+    <PasswordField fx:id="passwordField" layoutX="300.0" layoutY="200.0"/>
+
+    <Button layoutX="348.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleLogin" text="Submit"/>
+    <Label layoutX="153.0" layoutY="127.0" prefHeight="27.0" prefWidth="124.0" text="Username:">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label layoutX="155.0" layoutY="199.0" prefHeight="27.0" prefWidth="85.0" text="Parola:">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label layoutX="197.0" layoutY="44.0" text="Concurs Copii">
+        <font>
+            <Font name="System Bold" size="32.0"/>
+        </font>
+    </Label>
+    <Label layoutX="301.0" layoutY="235.0" prefHeight="19.0" prefWidth="149.0" textFill="#dd0c0c">
+        <font>
+            <Font size="13.0"/>
+        </font>
+    </Label>
+</AnchorPane>

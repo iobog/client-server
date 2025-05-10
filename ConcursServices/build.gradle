@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group = 'concurs'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':ConcursModel')
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ConcursClient" />
+            <option value="$PROJECT_DIR$/ConcursClientFX" />
+            <option value="$PROJECT_DIR$/ConcursModel" />
+            <option value="$PROJECT_DIR$/ConcursNetworking" />
+            <option value="$PROJECT_DIR$/ConcursPersistance" />
+            <option value="$PROJECT_DIR$/ConcursServer" />
+            <option value="$PROJECT_DIR$/ConcursServices" />
+            <option value="$PROJECT_DIR$/Grpc" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

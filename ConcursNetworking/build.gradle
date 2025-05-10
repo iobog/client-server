@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'com.google.protobuf' version '0.9.4'  // For Protobuf/GRPC codegen
+}
+
+group = 'concurs'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Modules (if applicable)
+    implementation project(':ConcursModel')
+    implementation project(':ConcursServices')
+
+    // Logging
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'org.apache.logging.log4j:log4j-api:2.24.3'
+
+    // gRPC & Protobuf
+    implementation 'io.grpc:grpc-netty-shaded:1.61.0'  // gRPC transport
+    implementation 'io.grpc:grpc-protobuf:1.61.0'     // Protobuf serialization
+    implementation 'io.grpc:grpc-stub:1.61.0'         // gRPC stubs
+    compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // For @Generated
+
+    // Testing
+    testImplementation 'junit:junit:4.12'
+
+    // Other utilities
+    implementation 'com.google.protobuf:protobuf-java:3.22.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.22.2"  // Protobuf compiler
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.61.0"  // gRPC plugin
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}  // Enable gRPC codegen
+            }
+        }
+    }
+
+}
+tasks.named("processResources") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/proto'  // Default location (recommended)
+            // If you prefer to keep it in `java/concurs/protobuf`, use:
+            // srcDir 'src/main/java/concurs/protobuf'
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_19
+    targetCompatibility = JavaVersion.VERSION_19
+}
