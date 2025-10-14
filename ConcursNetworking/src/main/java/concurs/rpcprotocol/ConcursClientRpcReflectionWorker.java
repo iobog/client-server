@@ -81,14 +81,17 @@ public class ConcursClientRpcReflectionWorker implements Runnable, IConcursOberv
         }
     }
 
-    private static final Response okResponse = new Response.Builder().type(ResponseType.OK).build();
+    private static final Response okResponse = new Response.Builder()
+            .type(ResponseType.OK)
+            .build();
 
     public Response handleRequest(Request request) {
         Response response = null;
         String handleName = "handle" + (request).type();
         logger.debug("Handling request: "+handleName);
         try{
-            Method method = this.getClass().getDeclaredMethod(handleName, Request.class);
+            Method method = this.getClass()
+                    .getDeclaredMethod(handleName, Request.class);
             response = (Response) method.invoke(this, request);
             logger.debug("Handling response: "+response);
         }
@@ -118,7 +121,10 @@ public class ConcursClientRpcReflectionWorker implements Runnable, IConcursOberv
         }
         catch (ConcursException e){
             connected=false;
-            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            return new Response.Builder()
+                    .type(ResponseType.ERROR)
+                    .data(e.getMessage())
+                    .build();
         }
     }
 
@@ -133,21 +139,27 @@ public class ConcursClientRpcReflectionWorker implements Runnable, IConcursOberv
         }
         catch (ConcursException e){
             connected=false;
-            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            return new Response.Builder()
+                    .type(ResponseType.ERROR)
+                    .data(e.getMessage())
+                    .build();
         }
     }
 
-    /// TODO: implement the rest of the methods
-    /// getProbele
     public Response handleINSCRIE_PARTICIPANT(Request request) {
         logger.debug("Inscrie participant request: "+request.type());
         InscriereDTO udto = (InscriereDTO)request.data();
         try{
             server.addParticipantToProba(udto.getParticipantId(), udto.getProbaId());
-            return new Response.Builder().type(ResponseType.PARTICIPANT_ADDED).build();
+            return new Response.Builder()
+                    .type(ResponseType.PARTICIPANT_ADDED)
+                    .build();
         }
         catch (ConcursException e) {
-            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+            return new Response.Builder()
+                    .type(ResponseType.ERROR)
+                    .data(e.getMessage())
+                    .build();
         }
     }
 

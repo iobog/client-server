@@ -10,19 +10,17 @@ import java.net.Socket;
 
 
 public class ConcursRpcConcurrentServer extends AbsConcurrentServer {
-    private IConcursServices chatServer;
+    private IConcursServices concursServices;
     private static Logger logger = LogManager.getLogger(ConcursRpcConcurrentServer.class);
-    public ConcursRpcConcurrentServer(int port, IConcursServices chatServer) {
+    public ConcursRpcConcurrentServer(int port, IConcursServices concursServices) {
         super(port);
-        this.chatServer = chatServer;
+        this.concursServices = concursServices;
         logger.info("Chat- ChatRpcConcurrentServer");
     }
 
     @Override
     protected Thread createWorker(Socket client) {
-        ConcursClientRpcReflectionWorker worker=new ConcursClientRpcReflectionWorker(chatServer, client);
-
-
+        ConcursClientRpcReflectionWorker worker=new ConcursClientRpcReflectionWorker(concursServices, client);
         Thread tw = new Thread(worker);
         return tw;
     }

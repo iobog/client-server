@@ -1,68 +1,24 @@
 package concurs;
-import concurs.repository.jdbc.ProbaDataBaseRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import concurs.model.Proba;
-import concurs.repository.ProbaRepository;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-//
-//@CrossOrigin(origins = "*")
-//@RestController
-//@RequestMapping("/concurs/probe")
-//public class ProbaRestController {
-//  private final ProbaDataBaseRepository probaRepo;
-//
-//  @Autowired
-//  public ProbaRestController(ProbaDataBaseRepository probaRepo) {
-//    this.probaRepo = probaRepo;
-//  }
-//
-//  @GetMapping
-//  public List<Proba> getAllProbe() {
-//    return StreamSupport
-//            .stream(probaRepo.findAll().spliterator(), false)
-//            .collect(Collectors.toList());
-//  }
-//
-//  @GetMapping("/{id}")
-//  public Proba getProbaById(@PathVariable Integer id) {
-//    Optional<Proba> probaOpt = Optional.ofNullable(probaRepo.findOne(id));
-//    return probaOpt.orElseThrow(() -> new RuntimeException("Proba not found with id: " + id));
-//  }
-//
-//  @PostMapping
-//  public Proba createProba(@RequestBody Proba proba) {
-//    return probaRepo.add(proba);
-//  }
-//
-//  @PutMapping("/{id}")
-//  public Proba updateProba(@PathVariable Integer id, @RequestBody Proba proba) {
-//    Optional<Proba> existingProba = Optional.ofNullable(probaRepo.findOne(id));
-//    if (existingProba.isEmpty()) {
-//      throw new RuntimeException("Proba not found for update with id: " + id);
-//    }
-//    proba.setId(id);
-//    return probaRepo.update(proba.getId(),proba);
-//  }
-//
-//  @DeleteMapping("/{id}")
-//  public void deleteProba(@PathVariable Integer id) {
-//    Optional<Proba> probaOpt = Optional.ofNullable(probaRepo.findOne(id));
-//    if (probaOpt.isEmpty()) {
-//      throw new RuntimeException("Proba not found for deletion with id: " + id);
-//    }
-//    probaRepo.delete(id);
-//  }
-//}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-
+import concurs.model.Proba;
+import concurs.repository.jdbc.ProbaDataBaseRepository;
 
 @CrossOrigin(origins = "*")
 @RestController

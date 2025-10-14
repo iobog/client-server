@@ -1,7 +1,23 @@
 
 package concurs.client.gui;
 
-import concurs.model.*;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import concurs.model.Inscriere;
+import concurs.model.Participant;
+import concurs.model.PersoanaOficiu;
+import concurs.model.Proba;
+import concurs.model.Tuple;
 import concurs.services.ConcursException;
 import concurs.services.IConcursOberver;
 import concurs.services.IConcursServices;
@@ -16,19 +32,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 public class ProbeController implements Initializable, IConcursOberver {
     private static final Logger logger = LogManager.getLogger(ProbeController.class);
@@ -440,47 +451,14 @@ public class ProbeController implements Initializable, IConcursOberver {
     // aici nu mmi se pare prea corect ceea ce fac
     @Override
     public void inscriereConcurs(Inscriere inscriere) throws ConcursException {
-//        Platform.runLater(() -> {
-//            try {
-//                // Salvează ID-ul probei selectate (dacă există)
-//                Proba selected = selectedProba;
-//                Integer selectedProbaId = (selected != null) ? findProbaId(selected) : null;
-//
-//                // Reîncarcă probele (va recrea obiectele în tabel)
-//                loadProbe();
-//
-//                // Dacă e selectată o probă și e aceeași cu cea înscrisă
-//                if (selectedProbaId != null && selectedProbaId.equals(inscriere.getProba())) {
-//                    // Găsește din nou proba în lista actualizată și selecteaz-o din nou în tabel
-//                    for (Proba proba : probeModel) {
-//                        if (findProbaId(proba).equals(selectedProbaId)) {
-//                            probeTableView.getSelectionModel().select(proba);
-//                            break;
-//                        }
-//                    }
-//
-//                    // Reîncarcă participanții pentru acea probă
-//                    handleShowParticipantiForSelectedProba(selected);
-//                }
-//
-//                logger.info("Received registration update for proba ID {}", inscriere.getProba());
-//            } catch (Exception e) {
-//                logger.error("Error handling registration update", e);
-//            }
-//        });
 
         Platform.runLater(() -> {
             try {
-                // 1. Refresh the competitions list
                 loadProbe();
-
-                // 2. Check if the updated competition is currently selected
                 Proba updatedProba = findProbaById(inscriere.getProba());
 
                 if (updatedProba != null) {
-                    // 3. If we have a selected competition and it matches the updated one
                     if (selectedProba != null && selectedProba.getId().equals(updatedProba.getId())) {
-                        // Refresh participants for the selected competition
                         handleShowParticipantiForSelectedProba(updatedProba);
 
                         // Update the selection to maintain UI state

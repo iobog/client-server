@@ -2,7 +2,7 @@ package concurs.repository.jdbc;
 import concurs.model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+// hibernate utils
 public class HibernateUtils {
 
     private static SessionFactory sessionFactory;

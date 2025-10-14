@@ -33,11 +33,11 @@ public class StartRpcServer {
         InscriereRepository inscriereRepository = new InscriereDataBaseRepository(serverProps);
 //        ParticipantRepository participantRepository = new ParticipantDataBaseRepository(serverProps);
         ParticipantDataBaseRepositoryHibernate participantDataBaseRepositoryHibernate = new ParticipantDataBaseRepositoryHibernate();
-        ProbaDataBaseRepositoryHibernate probaDataBaseRepositoryHibernate = new ProbaDataBaseRepositoryHibernate();
+        //ProbaDataBaseRepositoryHibernate probaDataBaseRepositoryHibernate = new ProbaDataBaseRepositoryHibernate();
         PersoanaOficiuRepository persoanaOficiuRepository = new PersoanaOficiuDataBaseRepository(serverProps);
-//        ProbaRepository probaRepository = new ProbaDataBaseRepository(serverProps);
+        ProbaRepository probaRepository = new ProbaDataBaseRepository(serverProps);
 
-        IConcursServices concursServerImpl = new ConcursServerImpl(inscriereRepository, participantDataBaseRepositoryHibernate, persoanaOficiuRepository, probaDataBaseRepositoryHibernate);
+        IConcursServices concursServerImpl = new ConcursServerImpl(inscriereRepository, participantDataBaseRepositoryHibernate, persoanaOficiuRepository, probaRepository);
 
         int concursServerPort = defaultPort;
         try{
